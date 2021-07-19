@@ -6,6 +6,16 @@ class AuthService {
     const provider = new firebase.auth[`${providerName}AuthProvider`]();
     return firebaseApp.auth().signInWithPopup(provider);
   }
+
+  onAuthChange(onUserChange) {
+    firebaseApp.auth().onAuthStateChanged((user) => {
+      onUserChange(user);
+    });
+  }
+
+  onLogout() {
+    firebaseApp.auth().signOut();
+  }
 }
 
 export default AuthService;
