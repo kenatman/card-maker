@@ -54,11 +54,16 @@ const Main = ({ authService }) => {
       }
     }, []);
   });
+
+  const handleSubmit = (newObj) => {
+    const newCards = [...cards, newObj];
+    setCards(newCards);
+  };
   return (
     <section className={styles.main}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <Editor cards={cards} />
+        <Editor cards={cards} onSubmit={handleSubmit} />
         <Preview cards={cards} />
       </div>
       <Footer />
