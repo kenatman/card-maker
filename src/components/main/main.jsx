@@ -8,9 +8,39 @@ import Preview from "../preview/preview";
 
 const Main = ({ authService }) => {
   const [cards, setCards] = useState([
-    { id: 1, name: "kenatman", company: "Samsung", fileURL: `kenatman.com` },
-    { id: 2, name: "kenatman2", company: "Samsung", fileURL: `kenatman.com` },
-    { id: 3, name: "kenatman3", company: "Samsung", fileURL: `kenatman.com` },
+    {
+      id: 1,
+      name: "kenatman",
+      company: "Samsung",
+      theme: "dark",
+      title: "developer",
+      email: "kenatman.com",
+      message: "let it go",
+      fileName: "photoName",
+      fileURL: null,
+    },
+    {
+      id: 2,
+      name: "kenatman2",
+      company: "Samsung",
+      theme: "colorful",
+      title: "developer",
+      email: "kenatman.com",
+      message: "let it go",
+      fileName: "photoName",
+      fileURL: null,
+    },
+    {
+      id: 3,
+      name: "kenatman",
+      company: "Samsung",
+      theme: "light",
+      title: "developer",
+      email: "kenatman.com",
+      message: "let it go",
+      fileName: "photoName",
+      fileURL: null,
+    },
   ]);
   const history = useHistory();
   const onLogout = () => {
