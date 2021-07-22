@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
 import Button from "../button/button";
-import ImageFileInput from "../image_file_input/image_file_input";
 import styles from "./create_form.module.css";
 
-const CreateForm = ({ onSubmit }) => {
+const CreateForm = ({ FileInput, onSubmit }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();
@@ -70,7 +69,7 @@ const CreateForm = ({ onSubmit }) => {
         name="message"
       />
       <div className={styles.fileInput}>
-        <ImageFileInput />
+        <FileInput />
       </div>
       <Button name="Add" onClick={handleSubmit} />
     </form>

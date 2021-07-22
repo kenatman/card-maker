@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
 import Button from "../button/button";
-import ImageFileInput from "../image_file_input/image_file_input";
 import styles from "./edit_form.module.css";
 
-const EditForm = ({ card, onDelete, onChange }) => {
+const EditForm = ({ FileInput, card, onDelete, onChange }) => {
   const { name, company, theme, title, email, message, fileName, fileURL } =
     card;
   const formRef = useRef();
@@ -79,7 +78,7 @@ const EditForm = ({ card, onDelete, onChange }) => {
         onChange={handleChange}
       />
       <div className={styles.fileInput}>
-        <ImageFileInput />
+        <FileInput />
       </div>
       <Button name="Delete" onClick={handleDelete} />
     </form>

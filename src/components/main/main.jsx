@@ -6,7 +6,7 @@ import Header from "../header/header";
 import Editor from "../editor/editor";
 import Preview from "../preview/preview";
 
-const Main = ({ authService }) => {
+const Main = ({ FileInput, authService }) => {
   const [cards, setCards] = useState({
     1: {
       id: 1,
@@ -77,6 +77,7 @@ const Main = ({ authService }) => {
       <Header onLogout={onLogout} />
       <div className={styles.container}>
         <Editor
+          FileInput={FileInput}
           cards={cards}
           onSubmit={handleCreateOrUpdate}
           onDelete={handleDelete}
