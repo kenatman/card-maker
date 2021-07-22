@@ -38,7 +38,7 @@ const Main = ({ FileInput, authService }) => {
       title: "developer",
       email: "kenatman.com",
       message: "let it go",
-      fileName: "photoName",
+      fileName: "",
       fileURL: null,
     },
   });
