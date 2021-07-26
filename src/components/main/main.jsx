@@ -6,47 +6,17 @@ import Header from "../header/header";
 import Editor from "../editor/editor";
 import Preview from "../preview/preview";
 
-const Main = ({ FileInput, authService }) => {
-  const [cards, setCards] = useState({
-    1: {
-      id: 1,
-      name: "kenatman",
-      company: "Samsung",
-      theme: "dark",
-      title: "developer",
-      email: "kenatman.com",
-      message: "let it go",
-      fileName: "photoName",
-      fileURL: null,
-    },
-    2: {
-      id: 2,
-      name: "kenatman2",
-      company: "Samsung",
-      theme: "colorful",
-      title: "developer",
-      email: "kenatman.com",
-      message: "let it go",
-      fileName: "photoName",
-      fileURL: null,
-    },
-    3: {
-      id: 3,
-      name: "kenatman",
-      company: "Samsung",
-      theme: "light",
-      title: "developer",
-      email: "kenatman.com",
-      message: "let it go",
-      fileName: "",
-      fileURL: null,
-    },
-  });
+const Main = ({ FileInput, authService, cardRepository }) => {
+  const historyState = useHistory()?.location?.state;
+  const [cards, setCards] = useState({});
+  const [userId, setUserId] = useState(historyState && historyState.id);
   const history = useHistory();
 
   useEffect(() => {
     authService.onAuthChange((user) => {
-      if (!user) {
+      if (user) {
+        setUserId(user.uid);
+      } else {
         history.push("/");
       }
     }, []);
@@ -62,6 +32,7 @@ const Main = ({ FileInput, authService }) => {
       updated[card.id] = card;
       return updated;
     });
+    cardRepository.saveCard(userId, card);
   };
 
   const handleDelete = (card) => {
@@ -70,6 +41,7 @@ const Main = ({ FileInput, authService }) => {
       delete updated[card.id];
       return updated;
     });
+    cardRepository.removeCard(userId, card);
   };
 
   return (
