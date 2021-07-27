@@ -1,10 +1,9 @@
-import React, { useRef } from "react";
+import React, { memo, useRef } from "react";
 import Button from "../button/button";
 import styles from "./edit_form.module.css";
 
-const EditForm = ({ FileInput, card, onDelete, onChange }) => {
-  const { name, company, theme, title, email, message, fileName, fileURL } =
-    card;
+const EditForm = memo(({ FileInput, card, onDelete, onChange }) => {
+  const { name, company, theme, title, email, message, fileName } = card;
   const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();
@@ -87,6 +86,6 @@ const EditForm = ({ FileInput, card, onDelete, onChange }) => {
       <Button name="Delete" onClick={handleDelete} />
     </form>
   );
-};
+});
 
 export default EditForm;

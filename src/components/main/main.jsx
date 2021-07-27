@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./main.module.css";
 import Footer from "../footer/footer";
@@ -20,21 +20,24 @@ const Main = ({ FileInput, authService, cardRepository }) => {
       setCards(abc);
     });
     return () => stopSync();
-  }, [userId]);
+  }, [userId, cardRepository]);
 
   useEffect(() => {
-    authService.onAuthChange((user) => {
-      if (user) {
-        setUserId(user.uid);
-      } else {
-        history.push("/");
-      }
-    }, []);
+    authService.onAuthChange(
+      (user) => {
+        if (user) {
+          setUserId(user.uid);
+        } else {
+          history.push("/");
+        }
+      },
+      [authService, userId, history]
+    );
   });
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     authService.onLogout();
-  };
+  }, [authService]);
 
   const handleCreateOrUpdate = (card) => {
     setCards((cards) => {
